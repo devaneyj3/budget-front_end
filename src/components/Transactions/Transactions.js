@@ -3,25 +3,16 @@ import { Alert } from "reactstrap";
 import moment from "moment";
 import "./Transactions.scss";
 
-const Transactions = ({
-  id,
-  price,
-  description,
-  name,
-  category,
-  created,
-  updated,
-}) => {
+const Transactions = ({ id, price, description, name, category, created }) => {
   return (
     <>
-      <section key={id} className="transaction">
-        <p>{name}</p>
-        <p>{description}</p>
-        <p className="price">{price.toLocaleString()}</p>
-        <p>{category}</p>
-        <p>{moment(created).format("MMMM do YYYY")}</p>
-        {updated ? <p>{moment(updated).format("MMMM do YYYY")}</p> : null}
-      </section>
+      <tr>
+        <td>{name}</td>
+        <td>{description}</td>
+        <td className="price">${price.toLocaleString()}</td>
+        <td>{category}</td>
+        <td>{moment(created).format("MMMM do YYYY")}</td>
+      </tr>
     </>
   );
 };

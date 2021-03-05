@@ -1,9 +1,11 @@
-.transaction {
+tr {
   border: 1px solid black;
-  display:flex;
-  justify-content: space-around;
-  margin: 4%;
-  padding: 3%;
+  &:nth-child(even) {
+    background-color: lightgray;
+  }
+  td {
+    margin: 4px;
+  }
   .price {
     color: red
   }

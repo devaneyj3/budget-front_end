@@ -17,12 +17,21 @@ const App = ({ transactions, getTransactions }) => {
   return (
     <>
       <div className="container">
-        <p className="exp">{totalExp.toLocaleString()}</p>
-        {transactions
-          ? transactions.map((transaction) => {
-              return <Transactions {...transaction} />;
-            })
-          : null}
+        <p className="exp">${totalExp.toLocaleString()}</p>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Date</th>
+          </tr>
+          {transactions
+            ? transactions.map((transaction) => {
+                return <Transactions {...transaction} />;
+              })
+            : null}
+        </table>
       </div>
     </>
   );
