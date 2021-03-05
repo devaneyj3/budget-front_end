@@ -3,36 +3,27 @@ import { connect } from "react-redux";
 import { Alert } from "reactstrap";
 import { getTransactions } from "../redux/actions/transactionActions";
 import "./app.scss";
+import Transactions from "../components/Transactions/Transactions";
 
 const App = ({ transactions, getTransactions }) => {
   useEffect(() => {
     getTransactions();
-  });
+  }, []);
+
+  const totalExp = transactions.reduce(
+    (acc, transaction) => acc + transaction.price,
+    0
+  );
   return (
     <>
-      {transactions
-        ? transactions.map((transaction) => {
-            const {
-              id,
-              price,
-              description,
-              name,
-              category,
-              created,
-              updated,
-            } = transaction;
-            return (
-              <section key={id} className="transaction">
-                <h1>{name}</h1>
-                <h1>{description}</h1>
-                <h1>{price}</h1>
-                <h1>{category}</h1>
-                <h1>{created}</h1>
-                <h1>{updated}</h1>
-              </section>
-            );
-          })
-        : null}
+      <div className="container">
+        <p className="exp">{totalExp.toLocaleString()}</p>
+        {transactions
+          ? transactions.map((transaction) => {
+              return <Transactions {...transaction} />;
+            })
+          : null}
+      </div>
     </>
   );
 };
