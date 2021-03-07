@@ -1,38 +1,18 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { Alert } from "reactstrap";
 import { getTransactions } from "../redux/actions/transactionActions";
 import "./app.scss";
-import Transactions from "../components/Transactions/Transactions";
+import AddTransaction from "../components/AddTransaction/AddTransaction";
+import ExpensesTable from "../components/ExpensesTable/ExpensesTable";
 
 const App = ({ transactions, getTransactions }) => {
   useEffect(() => {
     getTransactions();
   }, []);
-
-  const totalExp = transactions.reduce(
-    (acc, transaction) => acc + transaction.price,
-    0
-  );
   return (
     <>
-      <div className="container">
-        <p className="exp">${totalExp.toLocaleString()}</p>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Date</th>
-          </tr>
-          {transactions
-            ? transactions.map((transaction) => {
-                return <Transactions {...transaction} />;
-              })
-            : null}
-        </table>
-      </div>
+      <AddTransaction />
+      <ExpensesTable transactions={transactions} />
     </>
   );
 };
