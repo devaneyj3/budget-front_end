@@ -1,5 +1,7 @@
 import { Formik, Field } from "formik";
-const AddTransaction = () => {
+import { addTransaction } from "../../redux/actions/transactionActions";
+import { connect } from "react-redux";
+const AddTransaction = ({ addTransaction }) => {
   return (
     <Formik
       initialValues={{
@@ -11,7 +13,7 @@ const AddTransaction = () => {
         date: "",
       }}
       onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
+        addTransaction(values);
       }}
     >
       {(props) => (
@@ -75,4 +77,4 @@ const AddTransaction = () => {
   );
 };
 
-export default AddTransaction;
+export default connect(null, { addTransaction })(AddTransaction);
