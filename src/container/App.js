@@ -13,17 +13,41 @@ const App = ({ transactions, getTransactions, msg }) => {
     getTransactions();
   }, []);
 
-  const [totalInc, setTotalInc] = useState(0);
-  const [totalExp, setTotalExp] = useState(0);
+  const incomeArr = transactions.filter(
+    (transaction) => transaction.type === "inc"
+  );
+  const totalInc = incomeArr.reduce(
+    (acc, transaction) => acc + transaction.price,
+    0
+  );
+  const expenseArr = transactions.filter(
+    (transaction) => transaction.type === "exp"
+  );
+  const totalExp = expenseArr.reduce(
+    (acc, transaction) => acc + transaction.price,
+    0
+  );
 
   return (
     <div className="app-container">
       {msg ? <Alert color="success">{msg}</Alert> : null}
       <AddTransaction />
-      <Money transactions={transactions} />
+      <Money
+        transactions={transactions}
+        totalInc={totalInc}
+        totalExp={totalExp}
+      />
       <section className="tables">
-        <ExpensesTable transactions={transactions} setTotalExp={setTotalExp} />
-        <IncomeTable transactions={transactions} setTotalInc={setTotalInc} />
+        <ExpensesTable
+          transactions={transactions}
+          expenseArr={expenseArr}
+          totalExp={totalExp}
+        />
+        <IncomeTable
+          transactions={transactions}
+          incomeArr={incomeArr}
+          totalInc={totalInc}
+        />
       </section>
     </div>
   );

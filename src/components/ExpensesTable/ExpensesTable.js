@@ -1,14 +1,7 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert } from "reactstrap";
 import "./ExpensesTable.scss";
-const ExpensesTable = ({ transactions, setTotalExp }) => {
-  const expenseArr = transactions.filter(
-    (transaction) => transaction.type === "exp"
-  );
-  const totalExp = expenseArr.reduce(
-    (acc, transaction) => acc + transaction.price,
-    0
-  );
+const ExpensesTable = ({ transactions, expenseArr, totalExp }) => {
   return (
     <div className="container">
       <p className="exp">Total Expenses: ${totalExp.toLocaleString()}</p>

@@ -1,14 +1,7 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert } from "reactstrap";
 import "./IncomeTable.scss";
-const IncomeTable = ({ transactions, setTotalInc }) => {
-  const incomArr = transactions.filter(
-    (transaction) => transaction.type === "inc"
-  );
-  const totalInc = incomArr.reduce(
-    (acc, transaction) => acc + transaction.price,
-    0
-  );
+const IncomeTable = ({ incomeArr, totalInc }) => {
   return (
     <div className="container">
       <p className="inc">Total Income: ${totalInc.toLocaleString()}</p>
@@ -20,8 +13,8 @@ const IncomeTable = ({ transactions, setTotalInc }) => {
           <th>Category</th>
           <th>Date</th>
         </tr>
-        {incomArr ? (
-          incomArr.map((transaction) => {
+        {incomeArr ? (
+          incomeArr.map((transaction) => {
             return <Transactions {...transaction} />;
           })
         ) : (

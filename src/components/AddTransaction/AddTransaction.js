@@ -13,15 +13,18 @@ const AddTransaction = ({ addTransaction }) => {
         date: "",
       }}
       onSubmit={(values) => {
+        console.log(values);
         addTransaction(values);
       }}
     >
       {(props) => (
         <form onSubmit={props.handleSubmit}>
-          <Field as="select" name="type">
+          <Field as="select" name="type" required>
+            <option>Type: </option>
             <option value="inc">Inc</option>
             <option value="exp">Exp</option>
           </Field>
+          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
           <input
             type="text"
             onChange={props.handleChange}
@@ -29,6 +32,7 @@ const AddTransaction = ({ addTransaction }) => {
             value={props.values.name}
             placeholder="Name"
             name="name"
+            required
           />
           {props.errors.name && <div id="feedback">{props.errors.name}</div>}
           <input
@@ -38,6 +42,7 @@ const AddTransaction = ({ addTransaction }) => {
             value={props.values.description}
             placeholder="Description"
             name="description"
+            required
           />
           {props.errors.description && (
             <div id="feedback">{props.errors.description}</div>
@@ -49,6 +54,7 @@ const AddTransaction = ({ addTransaction }) => {
             value={props.values.price}
             placeholder="3.00"
             name="price"
+            required
           />
           {props.errors.price && <div id="feedback">{props.errors.price}</div>}
           <input
@@ -58,6 +64,7 @@ const AddTransaction = ({ addTransaction }) => {
             value={props.values.category}
             name="category"
             placeholder="Category"
+            required
           />
           {props.errors.category && (
             <div id="feedback">{props.errors.category}</div>
@@ -68,6 +75,7 @@ const AddTransaction = ({ addTransaction }) => {
             onBlur={props.handleBlur}
             value={props.values.amount}
             name="date"
+            required
           />
           {props.errors.date && <div id="feedback">{props.errors.date}</div>}
           <button type="submit">Submit</button>
