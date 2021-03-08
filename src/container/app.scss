@@ -1,16 +1,9 @@
-.container {
-  text-align: center;
-  border: solid 1px red;
-  display: flex;
-  flex-direction: column;
-  margin: 3%;
-  table {
-    margin: 4%;
-    th, td {
-      padding: 10px
-    }
-  }
-  .exp {
-    color: red;
+.app-container {
+  margin: 5%;
+  border: 1px solid black;
+  .tables {
+    display: flex;
+    justify-content: space-around;
+    border: solid 1px blue;
   }
 }

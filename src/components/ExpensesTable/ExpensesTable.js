@@ -1,5 +1,6 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert } from "reactstrap";
+import "./ExpensesTable.scss";
 const ExpensesTable = ({ transactions }) => {
   const expenseArr = transactions.filter(
     (transaction) => transaction.type === "exp"
@@ -19,7 +20,7 @@ const ExpensesTable = ({ transactions }) => {
           <th>Category</th>
           <th>Date</th>
         </tr>
-        {expenseArr ? (
+        {transactions ? (
           expenseArr.map((transaction) => {
             return <Transactions {...transaction} />;
           })

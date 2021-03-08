@@ -6,6 +6,7 @@ import "./app.scss";
 import AddTransaction from "../components/AddTransaction/AddTransaction";
 import IncomeTable from "../components/IncomeTable/IncomeTable";
 import ExpensesTable from "../components/ExpensesTable/ExpensesTable";
+import Money from "../components/Money/Money";
 
 const App = ({ transactions, getTransactions, msg }) => {
   useEffect(() => {
@@ -13,12 +14,15 @@ const App = ({ transactions, getTransactions, msg }) => {
   }, []);
 
   return (
-    <>
+    <div className="app-container">
       {msg ? <Alert color="success">{msg}</Alert> : null}
       <AddTransaction />
-      <ExpensesTable transactions={transactions} />
-      <IncomeTable transactions={transactions} />
-    </>
+      <Money />
+      <section className="tables">
+        <ExpensesTable transactions={transactions} />
+        <IncomeTable transactions={transactions} />
+      </section>
+    </div>
   );
 };
 
