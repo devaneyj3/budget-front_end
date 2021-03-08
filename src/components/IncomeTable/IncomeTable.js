@@ -1,7 +1,7 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert } from "reactstrap";
 import "./IncomeTable.scss";
-const IncomeTable = ({ transactions }) => {
+const IncomeTable = ({ transactions, setTotalInc }) => {
   const incomArr = transactions.filter(
     (transaction) => transaction.type === "inc"
   );

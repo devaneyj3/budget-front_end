@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import "./Money.scss";
-const Money = () => {
+const Money = ({ transactions }) => {
   return <div className="money">$0</div>;
 };
 

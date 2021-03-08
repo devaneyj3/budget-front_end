@@ -1,7 +1,7 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert } from "reactstrap";
 import "./ExpensesTable.scss";
-const ExpensesTable = ({ transactions }) => {
+const ExpensesTable = ({ transactions, setTotalExp }) => {
   const expenseArr = transactions.filter(
     (transaction) => transaction.type === "exp"
   );
