@@ -1,19 +1,27 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { Button } from "reactstrap";
 import moment from "moment";
+import { deleteTransaction } from "../../redux/actions/transactionActions";
 import "./Transactions.scss";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Transactions = ({ id, price, description, name, category, created }) => {
+const Transactions = ({
+  id,
+  price,
+  description,
+  name,
+  category,
+  created,
+  deleteTransaction,
+}) => {
   const [showOptions, setShowOptions] = useState(false);
-  const editTransaction = (transaction) => {
+  const editItem = (transaction) => {
     console.log("editing, ", transaction);
   };
-  const deleteTransaction = (transaction) => {
-    console.log("deleting, ", transaction);
+  const deleteItem = (id) => {
+    deleteTransaction(id);
   };
   return (
     <>
@@ -28,14 +36,8 @@ const Transactions = ({ id, price, description, name, category, created }) => {
         <td>{moment(created).format("MMMM do YYYY")}</td>
         {showOptions ? (
           <>
-            <FontAwesomeIcon
-              icon={faEdit}
-              onClick={() => editTransaction(name)}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => deleteTransaction(name)}
-            />
+            <FontAwesomeIcon icon={faEdit} onClick={() => editItem(name)} />
+            <FontAwesomeIcon icon={faTrash} onClick={() => deleteItem(id)} />
           </>
         ) : null}
       </tr>
@@ -50,4 +52,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Transactions);
+export default connect(mapStateToProps, { deleteTransaction })(Transactions);

@@ -1,16 +1,17 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert } from "reactstrap";
-const ExpensesTable = ({ transactions }) => {
-  const expenseArr = transactions.filter(
-    (transaction) => transaction.type === "exp"
+import "./IncomeTable.scss";
+const IncomeTable = ({ transactions }) => {
+  const incomArr = transactions.filter(
+    (transaction) => transaction.type === "inc"
   );
-  const totalExp = expenseArr.reduce(
+  const totalInc = incomArr.reduce(
     (acc, transaction) => acc + transaction.price,
     0
   );
   return (
     <div className="container">
-      <p className="exp">Total Expenses: ${totalExp.toLocaleString()}</p>
+      <p className="inc">Total Income: ${totalInc.toLocaleString()}</p>
       <table>
         <tr>
           <th>Name</th>
@@ -19,8 +20,8 @@ const ExpensesTable = ({ transactions }) => {
           <th>Category</th>
           <th>Date</th>
         </tr>
-        {expenseArr ? (
-          expenseArr.map((transaction) => {
+        {incomArr ? (
+          incomArr.map((transaction) => {
             return <Transactions {...transaction} />;
           })
         ) : (
@@ -31,4 +32,4 @@ const ExpensesTable = ({ transactions }) => {
   );
 };
 
-export default ExpensesTable;
+export default IncomeTable;

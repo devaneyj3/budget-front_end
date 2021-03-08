@@ -1,6 +1,7 @@
 import {
   GET_TRANSACTIONS,
   POST_TRANSACTION,
+  DELETE_TRANSACTION,
 } from "../actions/transactionActions";
 const INITIAL_STATE = {
   transactions: [],
@@ -14,6 +15,11 @@ const transactionReducer = (state = INITIAL_STATE, action) => {
         transactions: action.payload,
       };
     case POST_TRANSACTION:
+      return {
+        transactions: action.payload,
+        msg: action.msg,
+      };
+    case DELETE_TRANSACTION:
       return {
         transactions: action.payload,
         msg: action.msg,
