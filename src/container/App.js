@@ -4,8 +4,7 @@ import { Alert } from "reactstrap";
 import { getTransactions } from "../redux/actions/transactionActions";
 import "./app.scss";
 import AddTransaction from "../components/AddTransaction/AddTransaction";
-import IncomeTable from "../components/IncomeTable/IncomeTable";
-import ExpensesTable from "../components/ExpensesTable/ExpensesTable";
+import LatestTrasactions from "../components/LatestTrasactions/LatestTrasactions";
 import Money from "../components/Money/Money";
 
 const App = ({ transactions, getTransactions, msg }) => {
@@ -37,18 +36,7 @@ const App = ({ transactions, getTransactions, msg }) => {
         totalInc={totalInc}
         totalExp={totalExp}
       />
-      <section className="tables">
-        <ExpensesTable
-          transactions={transactions}
-          expenseArr={expenseArr}
-          totalExp={totalExp}
-        />
-        <IncomeTable
-          transactions={transactions}
-          incomeArr={incomeArr}
-          totalInc={totalInc}
-        />
-      </section>
+      <LatestTrasactions transactions={transactions} />
     </div>
   );
 };
