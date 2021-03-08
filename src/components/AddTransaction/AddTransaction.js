@@ -1,6 +1,7 @@
 import { Formik, Field } from "formik";
 import { addTransaction } from "../../redux/actions/transactionActions";
 import { connect } from "react-redux";
+import "./AddTransaction.scss";
 const AddTransaction = ({ addTransaction }) => {
   return (
     <Formik
@@ -13,7 +14,6 @@ const AddTransaction = ({ addTransaction }) => {
         date: "",
       }}
       onSubmit={(values) => {
-        console.log(values);
         addTransaction(values);
       }}
     >

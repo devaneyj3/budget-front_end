@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import { deleteTransaction } from "../../redux/actions/transactionActions";
@@ -16,7 +15,6 @@ const Transactions = ({
   created,
   deleteTransaction,
 }) => {
-  const [showOptions, setShowOptions] = useState(false);
   const editItem = (transaction) => {
     console.log("editing, ", transaction);
   };
@@ -25,21 +23,23 @@ const Transactions = ({
   };
   return (
     <>
-      <tr
-        onMouseEnter={() => setShowOptions(true)}
-        onMouseLeave={() => setShowOptions(false)}
-      >
+      <tr>
         <td>{name}</td>
         <td>{description}</td>
         <td className="price">${price.toLocaleString()}</td>
         <td>{category}</td>
         <td>{moment(created).format("MMMM do YYYY")}</td>
-        {showOptions ? (
-          <>
-            <FontAwesomeIcon icon={faEdit} onClick={() => editItem(name)} />
-            <FontAwesomeIcon icon={faTrash} onClick={() => deleteItem(id)} />
-          </>
-        ) : null}
+
+        <FontAwesomeIcon
+          className="icon"
+          icon={faEdit}
+          onClick={() => editItem(name)}
+        />
+        <FontAwesomeIcon
+          className="icon"
+          icon={faTrash}
+          onClick={() => deleteItem(id)}
+        />
       </tr>
     </>
   );
