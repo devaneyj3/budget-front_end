@@ -1,7 +1,9 @@
+.addTransaction {
+  height: max-content
+}
 form {
   display: flex;
   flex-flow: column;
-  width: 50%;
   input, select, button {
     margin: 2%;
   }

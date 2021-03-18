@@ -1,43 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { Alert } from "reactstrap";
 import { getTransactions } from "../redux/actions/transactionActions";
 import "./app.scss";
 import AddTransaction from "../components/AddTransaction/AddTransaction";
 import LatestTrasactions from "../components/LatestTrasactions/LatestTrasactions";
-import Money from "../components/Money/Money";
+import Accounts from "../components/Accounts/Accounts";
 
 const App = ({ transactions, getTransactions, msg }) => {
   useEffect(() => {
     getTransactions();
   }, []);
-
-  const incomeArr = transactions.filter(
-    (transaction) => transaction.type === "inc"
-  );
-  const totalInc = incomeArr.reduce(
-    (acc, transaction) => acc + transaction.price,
-    0
-  );
-  const expenseArr = transactions.filter(
-    (transaction) => transaction.type === "exp"
-  );
-  const totalExp = expenseArr.reduce(
-    (acc, transaction) => acc + transaction.price,
-    0
-  );
-
   return (
-    <div className="app-container">
+    <>
       {msg ? <Alert color="success">{msg}</Alert> : null}
-      <AddTransaction />
-      <Money
-        transactions={transactions}
-        totalInc={totalInc}
-        totalExp={totalExp}
-      />
-      <LatestTrasactions transactions={transactions} />
-    </div>
+      <div className="flex-container">
+        <section className="addTransaction">
+          <h3>Add Transaction</h3>
+          <AddTransaction />
+        </section>
+        <section className="transactions">
+          <h3>Latest Transactions</h3>
+          <LatestTrasactions transactions={transactions} />
+        </section>
+        <section className="accounts">
+          <h3>Accounts</h3>
+          <Accounts transactions={transactions} />
+        </section>
+      </div>
+    </>
   );
 };
 

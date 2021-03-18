@@ -5,7 +5,6 @@ import "./Transactions.scss";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Table } from "reactstrap";
 
 const Transactions = ({
   id,
@@ -14,6 +13,7 @@ const Transactions = ({
   name,
   category,
   created,
+  account,
   type,
   deleteTransaction,
 }) => {
@@ -27,12 +27,13 @@ const Transactions = ({
     <tr>
       <td>{name}</td>
       <td>{description}</td>
+      <td>{account}</td>
       <td className={`price ${type === "inc" ? "inc" : "exp"}`}>
         ${price.toLocaleString()}
       </td>
       <td>{category}</td>
       <td>{moment(created).format("MMMM do YYYY")}</td>
-
+      {/* 
       <td>
         <FontAwesomeIcon
           className="icon"
@@ -46,7 +47,7 @@ const Transactions = ({
           icon={faTrash}
           onClick={() => deleteItem(id)}
         />
-      </td>
+      </td> */}
     </tr>
   );
 };

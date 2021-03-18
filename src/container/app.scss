@@ -1,9 +1,11 @@
-.app-container {
+.flex-container {
   margin: 5%;
+  flex-wrap: wrap;
   border: 1px solid black;
-  .tables {
-    display: flex;
-    justify-content: space-around;
-    border: solid 1px blue;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  .transactions {
+    align-self: flex-end;
   }
 }

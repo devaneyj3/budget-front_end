@@ -1,6 +1,5 @@
 import Transactions from "../Transactions/Transactions";
 import { Alert, Table } from "reactstrap";
-import "./IncomeTable.scss";
 const LatestTrasactions = ({ transactions }) => {
   return (
     <div className="container">
@@ -9,6 +8,7 @@ const LatestTrasactions = ({ transactions }) => {
           <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Account</th>
             <th>Price</th>
             <th>Category</th>
             <th>Date</th>
