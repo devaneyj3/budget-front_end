@@ -7,7 +7,6 @@ const LatestTrasactions = ({ transactions }) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Description</th>
             <th>Account</th>
             <th>Price</th>
             <th>Category</th>

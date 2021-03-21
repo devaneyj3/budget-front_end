@@ -44,7 +44,6 @@ const Transactions = ({
       {blur === false ? (
         <tr onMouseEnter={() => setBlur(true)}>
           <td>{name}</td>
-          <td>{description}</td>
           <td>{account}</td>
           <td className={`price ${type === "inc" ? "inc" : "exp"}`}>
             ${price.toLocaleString()}
@@ -54,7 +53,7 @@ const Transactions = ({
         </tr>
       ) : (
         <tr onMouseLeave={() => setBlur(false)}>
-          <td colSpan="6">
+          <td colSpan="5">
             <section className="btn-container">
               <Button color="info" onClick={toggle}>
                 <FontAwesomeIcon className="icon" icon={faEdit} />
