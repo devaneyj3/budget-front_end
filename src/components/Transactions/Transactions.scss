@@ -7,6 +7,10 @@ tr {
     margin: 4px;
   }
 }
+.btn-container {
+  display: flex;
+  justify-content: space-evenly;
+}
 .exp {
   color: red
 }
