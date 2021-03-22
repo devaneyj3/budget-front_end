@@ -1,4 +1,11 @@
 .accounts {
+  .account {
+    color: blue;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
   .green {
     color: green;
   }

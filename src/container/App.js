@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Alert } from "reactstrap";
 import { getTransactions } from "../redux/actions/transactionActions";
@@ -11,6 +11,8 @@ const App = ({ transactions, getTransactions, msg }) => {
   useEffect(() => {
     getTransactions();
   }, []);
+  const [account, setAccount] = useState("");
+
   return (
     <>
       {msg ? <Alert color="success">{msg}</Alert> : null}
@@ -21,11 +23,11 @@ const App = ({ transactions, getTransactions, msg }) => {
         </section>
         <section className="transactions">
           <h3>Latest Transactions</h3>
-          <LatestTrasactions transactions={transactions} />
+          <LatestTrasactions transactions={transactions} account={account} />
         </section>
         <section className="accounts">
           <h3>Accounts</h3>
-          <Accounts transactions={transactions} />
+          <Accounts setAccount={setAccount} transactions={transactions} />
         </section>
       </div>
     </>

@@ -1,6 +1,6 @@
 import { Table } from "reactstrap";
 import "./Accounts.scss";
-const Accounts = ({ transactions }) => {
+const Accounts = ({ transactions, setAccount }) => {
   const MoneyInAccount = (account) => {
     const Inc = transactions
       .filter((item) => item.account === account && item.type === "inc")
@@ -17,7 +17,7 @@ const Accounts = ({ transactions }) => {
   const checking = MoneyInAccount("Checking");
   const savings = MoneyInAccount("Savings");
   const AccountsArr = [checking, savings];
-  console.log(AccountsArr);
+  const total = AccountsArr.reduce((acc, curr) => acc + curr.total, 0);
 
   return (
     <section className="accounts">
@@ -31,14 +31,25 @@ const Accounts = ({ transactions }) => {
         <tbody>
           {AccountsArr.map((account) => {
             return (
-              <tr>
-                <td>{account.account}</td>
+              <tr key={account.account}>
+                <td
+                  className="account"
+                  onClick={() => setAccount(account.account)}
+                >
+                  {account.account}
+                </td>
                 <td className={account.total > 0 ? "green" : "red"}>
                   ${account.total.toLocaleString()}
                 </td>
               </tr>
             );
           })}
+          <tr>
+            <td className="account" onClick={() => setAccount("")}>
+              Total
+            </td>
+            <td>${total.toLocaleString()}</td>
+          </tr>
         </tbody>
       </Table>
     </section>

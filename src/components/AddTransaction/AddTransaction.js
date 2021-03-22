@@ -44,18 +44,6 @@ const AddTransaction = ({ addTransaction }) => {
             />
             {props.errors.name && <div id="feedback">{props.errors.name}</div>}
             <input
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              placeholder="Description"
-              name="description"
-              required
-            />
-            {props.errors.description && (
-              <div id="feedback">{props.errors.description}</div>
-            )}
-            <input
               type="number"
               onChange={props.handleChange}
               onBlur={props.handleBlur}

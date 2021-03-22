@@ -18,7 +18,6 @@ import {
 const Transactions = ({
   id,
   price,
-  description,
   name,
   category,
   created,
