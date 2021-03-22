@@ -22,8 +22,12 @@ const App = ({ transactions, getTransactions, msg }) => {
           <AddTransaction />
         </section>
         <section className="transactions">
-          <h3>Latest Transactions</h3>
-          <LatestTrasactions transactions={transactions} account={account} />
+          <h3>Latest {account} Transactions</h3>
+          <LatestTrasactions
+            transactions={transactions}
+            account={account}
+            setAccount={setAccount}
+          />
         </section>
         <section className="accounts">
           <h3>Accounts</h3>

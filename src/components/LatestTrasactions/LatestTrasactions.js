@@ -13,15 +13,21 @@ const LatestTrasactions = ({ transactions, account }) => {
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
-    const filteredTransactions = transactions.filter((transaction) => {
-      if (input.category) {
-        return transaction.category === input.category;
-      }
-      return transaction.id;
-    });
-    console.log(filteredTransactions);
+    const filteredTransactions = transactions
+      .filter((transaction) => {
+        if (input.category) {
+          return transaction.category === input.category;
+        }
+        return transaction.id;
+      })
+      .filter((transaction) => {
+        if (account) {
+          return transaction.account === account;
+        }
+        return transaction.id;
+      });
     setFilteredList(filteredTransactions);
-  }, [transactions, input.account, input.category]);
+  }, [transactions, input.account, input.category, account]);
 
   const changeHandleCategory = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -49,11 +55,13 @@ const LatestTrasactions = ({ transactions, account }) => {
           </Col>
         </Row>
       </Form>
-      {input.category && (
+      {input.category ? (
         <div className="filtered-term">
-          <span>x {input.category}</span>
+          <span onClick={() => setInput({ ...input, category: "" })}>
+            x {input.category}
+          </span>
         </div>
-      )}
+      ) : null}
       <Table hover>
         <thead>
           <tr>
@@ -66,16 +74,9 @@ const LatestTrasactions = ({ transactions, account }) => {
         </thead>
         <tbody>
           {transactions ? (
-            filteredList
-              .filter((transaction) => {
-                if (account) {
-                  return transaction.account === account;
-                }
-                return transaction.id;
-              })
-              .map((transaction) => {
-                return <Transactions key={transaction.id} {...transaction} />;
-              })
+            filteredList.map((transaction) => {
+              return <Transactions key={transaction.id} {...transaction} />;
+            })
           ) : (
             <Alert color="danger">There are no transactions</Alert>
           )}
