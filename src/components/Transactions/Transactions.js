@@ -32,14 +32,16 @@ const Transactions = ({
   return (
     <>
       {edit ? (
-        <TransactionForm
-          name={name}
-          price={price}
-          category={category}
-          date={created}
-          id={id}
-          setEdit={setEdit}
-        />
+        <td colSpan="5">
+          <TransactionForm
+            name={name}
+            price={price}
+            category={category}
+            date={created}
+            id={id}
+            setEdit={setEdit}
+          />
+        </td>
       ) : (
         <>
           {blur === false ? (

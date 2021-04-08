@@ -38,7 +38,7 @@ const Accounts = ({ transactions, setAccount }) => {
                 >
                   {account.account}
                 </td>
-                <td className={account.total > 0 ? "green" : "red"}>
+                <td className={account.total >= 0 ? "green" : "red"}>
                   ${account.total.toLocaleString()}
                 </td>
               </tr>
@@ -48,7 +48,9 @@ const Accounts = ({ transactions, setAccount }) => {
             <td className="account" onClick={() => setAccount("")}>
               Total
             </td>
-            <td>${total.toLocaleString()}</td>
+            <td className={total >= 0 ? "green" : "red"}>
+              ${total.toLocaleString()}
+            </td>
           </tr>
         </tbody>
       </Table>
