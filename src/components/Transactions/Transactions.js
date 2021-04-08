@@ -6,14 +6,8 @@ import "./Transactions.scss";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  Button,
-  Alert,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
+import TransactionForm from "../TransactionForm/TransactionForm";
+import { Button, Modal, ModalHeader, ModalFooter } from "reactstrap";
 
 const Transactions = ({
   id,
@@ -25,10 +19,7 @@ const Transactions = ({
   type,
   deleteTransaction,
 }) => {
-  const editItem = (transaction) => {
-    console.log("editing, ", transaction);
-    toggle();
-  };
+  const [edit, setEdit] = useState(false);
   const deleteItem = (id) => {
     deleteTransaction(id);
     toggle();
@@ -40,44 +31,60 @@ const Transactions = ({
   const toggle = () => setModal(!modal);
   return (
     <>
-      {blur === false ? (
-        <tr onMouseEnter={() => setBlur(true)}>
-          <td>{name}</td>
-          <td>{account}</td>
-          <td className={`price ${type === "inc" ? "inc" : "exp"}`}>
-            ${price.toLocaleString()}
-          </td>
-          <td>{category}</td>
-          <td>{moment(created).format("MMMM do YYYY")}</td>
-        </tr>
+      {edit ? (
+        <TransactionForm
+          name={name}
+          price={price}
+          category={category}
+          date={created}
+          id={id}
+          setEdit={setEdit}
+        />
       ) : (
-        <tr onMouseLeave={() => setBlur(false)}>
-          <td colSpan="5">
-            <section className="btn-container">
-              <Button color="info" onClick={toggle}>
-                <FontAwesomeIcon className="icon" icon={faEdit} />
-                Edit
-              </Button>
-              <Button color="danger" onClick={toggle}>
-                <FontAwesomeIcon className="icon" icon={faTrash} />
-                Delete
-              </Button>
-              <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle} style={{ textAlign: "center" }}>
-                  Are you sure you want to delete?
-                </ModalHeader>
-                <ModalFooter>
-                  <Button color="primary" onClick={toggle}>
-                    No
-                  </Button>{" "}
-                  <Button color="success" onClick={() => deleteItem(id)}>
-                    Yes
+        <>
+          {blur === false ? (
+            <tr onMouseEnter={() => setBlur(true)}>
+              <td>{name}</td>
+              <td>{account}</td>
+              <td className={`price ${type === "inc" ? "inc" : "exp"}`}>
+                ${price.toLocaleString()}
+              </td>
+              <td>{category}</td>
+              <td>{moment(created).format("MMMM do YYYY")}</td>
+            </tr>
+          ) : (
+            <tr onMouseLeave={() => setBlur(false)}>
+              <td colSpan="5">
+                <section className="btn-container">
+                  <Button color="info" onClick={() => setEdit(true)}>
+                    <FontAwesomeIcon className="icon" icon={faEdit} />
+                    Edit
                   </Button>
-                </ModalFooter>
-              </Modal>
-            </section>
-          </td>
-        </tr>
+                  <Button color="danger" onClick={toggle}>
+                    <FontAwesomeIcon className="icon" icon={faTrash} />
+                    Delete
+                  </Button>
+                  <Modal isOpen={modal} toggle={toggle}>
+                    <ModalHeader
+                      toggle={toggle}
+                      style={{ textAlign: "center" }}
+                    >
+                      Are you sure you want to delete?
+                    </ModalHeader>
+                    <ModalFooter>
+                      <Button color="primary" onClick={toggle}>
+                        No
+                      </Button>{" "}
+                      <Button color="success" onClick={() => deleteItem(id)}>
+                        Yes
+                      </Button>
+                    </ModalFooter>
+                  </Modal>
+                </section>
+              </td>
+            </tr>
+          )}
+        </>
       )}
     </>
   );

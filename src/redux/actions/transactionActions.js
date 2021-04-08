@@ -2,6 +2,7 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
 export const POST_TRANSACTION = "POST_TRANSACTION";
 export const DELETE_TRANSACTION = "DELETE_TRANSACTION";
+export const EDIT_TRANSACTION = "EDIT_TRANSACTION";
 export const getTransactions = () => async (dispatch) => {
   try {
     const response = await axiosWithAuth().get("/transactions");
@@ -24,9 +25,25 @@ export const deleteTransaction = (id) => async (dispatch) => {
     dispatch({ type: DELETE_TRANSACTION, msg: err.response.data.message });
   }
 };
+export const editTransaction = (id, data) => async (dispatch) => {
+  try {
+    console.log(id);
+    const response = await axiosWithAuth().put(`/transactions/${id}`, data);
+    console.log(response.data);
+    dispatch({
+      type: EDIT_TRANSACTION,
+      payload: response.data.data,
+      msg: response.data.message,
+    });
+    console.log(response.data.message);
+  } catch (err) {
+    dispatch({ type: POST_TRANSACTION, msg: err.response.data.message });
+  }
+};
 export const addTransaction = (data) => async (dispatch) => {
   try {
     const response = await axiosWithAuth().post("/transactions", data);
+    console.log("addTransaction", response.data);
     dispatch({
       type: POST_TRANSACTION,
       payload: response.data.data,

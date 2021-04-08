@@ -2,6 +2,7 @@ import {
   GET_TRANSACTIONS,
   POST_TRANSACTION,
   DELETE_TRANSACTION,
+  EDIT_TRANSACTION,
 } from "../actions/transactionActions";
 const INITIAL_STATE = {
   transactions: [],
@@ -20,6 +21,11 @@ const transactionReducer = (state = INITIAL_STATE, action) => {
         msg: action.msg,
       };
     case DELETE_TRANSACTION:
+      return {
+        transactions: action.payload,
+        msg: action.msg,
+      };
+    case EDIT_TRANSACTION:
       return {
         transactions: action.payload,
         msg: action.msg,
