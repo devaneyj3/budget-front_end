@@ -14,7 +14,6 @@ export const getTransactions = () => async (dispatch) => {
 export const deleteTransaction = (id) => async (dispatch) => {
   try {
     const response = await axiosWithAuth().delete(`/transactions/${id}`);
-    console.log(response);
     dispatch({
       type: DELETE_TRANSACTION,
       payload: response.data.data,
@@ -37,11 +36,12 @@ export const editTransaction = (id, data) => async (dispatch) => {
     });
     console.log(response.data.message);
   } catch (err) {
-    dispatch({ type: POST_TRANSACTION, msg: err.response.data.message });
+    dispatch({ type: EDIT_TRANSACTION, msg: err.response.data.message });
   }
 };
 export const addTransaction = (data) => async (dispatch) => {
   try {
+    console.log("addTransaction actions line 44", data);
     const response = await axiosWithAuth().post("/transactions", data);
     console.log("addTransaction", response.data);
     dispatch({

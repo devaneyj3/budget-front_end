@@ -6,7 +6,7 @@ const Edit = ({
   name,
   price,
   category,
-  date,
+  created,
   editTransaction,
   id,
   setEdit,
@@ -17,7 +17,7 @@ const Edit = ({
     type: "",
     account: "",
     category: "",
-    date: "",
+    created: "",
   });
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -64,9 +64,9 @@ const Edit = ({
         <input
           type="date"
           onChange={handleChange}
-          value={values.date}
-          placeholder={date}
-          name="date"
+          value={values.created}
+          placeholder={created}
+          name="created"
         />
         <Button color="success" type="submit">
           Edit

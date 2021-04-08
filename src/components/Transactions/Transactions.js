@@ -50,7 +50,7 @@ const Transactions = ({
                 ${price.toLocaleString()}
               </td>
               <td>{category}</td>
-              <td>{moment(created).format("MMMM do YYYY")}</td>
+              <td>{moment(created).format("l")}</td>
             </tr>
           ) : (
             <tr onMouseLeave={() => setBlur(false)}>

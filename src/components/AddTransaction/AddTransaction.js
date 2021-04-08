@@ -14,7 +14,7 @@ const AddTransaction = ({ addTransaction }) => {
           type: "",
           account: "",
           category: "",
-          date: "",
+          created: "",
         }}
         onSubmit={(values) => {
           addTransaction(values);
@@ -83,11 +83,13 @@ const AddTransaction = ({ addTransaction }) => {
               type="date"
               onChange={props.handleChange}
               onBlur={props.handleBlur}
-              value={props.values.amount}
-              name="date"
+              value={props.values.created}
+              name="created"
               required
             />
-            {props.errors.date && <div id="feedback">{props.errors.date}</div>}
+            {props.errors.created && (
+              <div id="feedback">{props.errors.created}</div>
+            )}
             <Button color="success" type="submit">
               Submit
             </Button>
