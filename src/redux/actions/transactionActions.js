@@ -19,7 +19,6 @@ export const deleteTransaction = (id) => async (dispatch) => {
       payload: response.data.data,
       msg: response.data.message,
     });
-    console.log(response.data.message);
   } catch (err) {
     dispatch({ type: DELETE_TRANSACTION, msg: err.response.data.message });
   }
@@ -41,15 +40,12 @@ export const editTransaction = (id, data) => async (dispatch) => {
 };
 export const addTransaction = (data) => async (dispatch) => {
   try {
-    console.log("addTransaction actions line 44", data);
     const response = await axiosWithAuth().post("/transactions", data);
-    console.log("addTransaction", response.data);
     dispatch({
       type: POST_TRANSACTION,
       payload: response.data.data,
       msg: response.data.message,
     });
-    console.log(response.data.message);
   } catch (err) {
     dispatch({ type: POST_TRANSACTION, msg: err.response.data.message });
   }
